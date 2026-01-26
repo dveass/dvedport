@@ -1,0 +1,1100 @@
+/* =========================
+   THEME
+========================= */
+:root{
+  /* Facebook-like dark mode */
+  --bg: #18191a;
+  --panel: #242526;
+  --panel-2: #1f2021;
+  --text: #e4e6eb;
+  --muted: #b0b3b8;
+  --border: #3a3b3c;
+  --border-2: #4e4f50;
+  --accent: #1877f2;
+
+  /* Adjust roundness here */
+  --radius: 6px;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--text);
+  scale: 30px;
+}
+
+/* Prevent layout shift when modal opens */
+body.modal-open{
+  overflow: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner{
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+}
+
+/* Logo */
+.logo{
+  height: 25px;     /* adjust logo size here */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  border: none;
+  background: none;
+}
+
+/* Social links */
+.social{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social a{
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: .15s ease;
+}
+
+.social a:hover{
+  color: var(--text);
+  background: #3a3b3c;
+  border-color: var(--border);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container{
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 30px 18px 40px;
+}
+
+.hero{
+  padding: 16px 0 12px;
+}
+
+.hero h1{
+  margin: 0 0 8px;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+
+/* =========================
+   GRID
+========================= */
+.grid-wrap{
+  margin-top: 12px;
+  padding-bottom: 26px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+}
+
+@media (max-width: 980px){
+  .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px){
+  .grid{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   CARDS
+========================= */
+.tile{
+  cursor: pointer;
+  border: none;              /* no border */
+  background: transparent;   /* clean */
+  box-shadow: none;
+  transition: none;          /* no hover animation */
+}
+
+.thumb{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--panel-2);
+}
+
+.thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tile:hover{
+  transform: none;
+  box-shadow: none;
+}
+
+/* Play icon (shows on hover) */
+.play-icon{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 58px;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+
+.tile:hover .play-icon{
+  opacity: 1;
+}
+
+/* Title OUTSIDE image */
+.card-title{
+  margin: 8px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: left;
+  text-shadow: none;
+}
+
+/* =========================
+   CONTACT
+========================= */
+.cta{
+  padding: 60px 18px 40px;
+  text-align: center;
+}
+
+.cta h2{
+  font-size: 32px;
+  margin-bottom: 14px;
+  font-weight: 900;
+}
+
+.cta-sub{
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.email-line{
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* Form */
+.simple-form{
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.simple-form input,
+.simple-form textarea{
+  width: 100%;
+  max-width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.simple-form textarea{
+  resize: vertical;
+}
+
+.simple-form input::placeholder,
+.simple-form textarea::placeholder{
+  color: var(--muted);
+}
+
+.simple-form input:focus,
+.simple-form textarea:focus{
+  outline: none;
+  border-color: #4f46e5;
+}
+
+/* Button */
+.simple-form button{
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: #4f46e5;
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.simple-form button:hover{
+  opacity: 0.95;
+}
+
+/* Footer */
+.footer{
+  margin-top: 16px;
+  padding-top: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* =========================
+   VIDEO MODAL
+========================= */
+.video-modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.705);
+  z-index: 9999;
+  padding: 20px;
+}
+
+.video-modal.active{
+  display: flex;
+}
+
+.video-content{
+  position: relative;
+  width: min(900px, 95vw);
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0);
+  border: none;
+
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  transition: background .15s ease, transform .15s ease;
+}
+
+.close-btn:hover{
+  background: rgba(0,0,0,.8);
+  transform: scale(1.05);
+}
+
+
+#videoContainer video,
+#videoContainer iframe{
+  width: 100%;
+  height: 480px;
+  display: block;
+  background: #000;
+}
+
+.software{
+  background: var(--bg);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+}
+
+.software img{
+  height: 28px;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+/* =========================
+   VIDEO MODAL – FINAL FIX
+========================= */
+
+/* Modal container */
+.video-content{
+  background: #000;                 /* keep proper video stage */
+  border: none;
+  box-shadow: none;
+  outline: none;
+  overflow: hidden;                 /* IMPORTANT */
+  border-radius: var(--radius);
+}
+
+/* Video container */
+#videoContainer{
+  background: #000;
+  border: none;
+  outline: none;
+}
+
+/* Video itself */
+#videoContainer video{
+  width: 100%;
+  height: 480px;
+  display: block;
+  background: #000;
+  object-fit: contain;              /* keeps aspect ratio */
+  border: none;
+  outline: none;
+}
+
+/* =========================
+   MODAL LAYOUT (CENTER + COLUMN)
+========================= */
+.video-modal.active{
+  display: flex;
+  flex-direction: column;   /* stack video + made-with */
+  align-items: center;      /* center everything */
+  justify-content: center;
+}
+
+/* keep the video box centered */
+.video-content{
+  width: min(900px, 95vw);
+  background: transparent;  /* remove big black box */
+  border: none;
+  box-shadow: none;
+  outline: none;
+  overflow: visible;
+}
+
+/* video container */
+#videoContainer{
+  width: 100%;
+}
+
+/* video element: fit nicely */
+#videoContainer video{
+  width: 100%;
+  height: auto;             /* IMPORTANT: stops weird stretching */
+  max-height: 75vh;         /* keeps it inside screen */
+  display: block;
+  background: #000;         /* black only behind the video */
+  border-radius: var(--radius);
+}
+
+/* =========================
+   MADE WITH (OUTSIDE VIDEO)
+========================= */
+.made-with{
+  width: min(900px, 95vw);
+  margin-top: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  background: transparent;  /* no black bg */
+  border: none;
+  box-shadow: none;
+
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* logo size */
+.made-with img{
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* =========================
+   FORCE MADE-WITH TEXT WHITE
+========================= */
+.made-with{
+  color: rgba(255,255,255,0.85);
+
+}
+
+.made-with span{
+  color: rgba(255,255,255,0.85);
+
+}
+
+/* =========================
+   VIDEO ROUNDNESS CONTROL
+========================= */
+
+/* adjust this value */
+:root{
+  --video-radius: 12px; /* ← change this */
+}
+
+/* video element */
+#videoContainer video{
+  border-radius: var(--video-radius);
+  overflow: hidden;
+}
+
+/* wrapper safety (prevents edge bleed) */
+#videoContainer{
+  border-radius: var(--video-radius);
+  overflow: hidden;
+}
+
+/* make sure the close button is ALWAYS on top and clickable */
+.close-btn{
+  position: absolute;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+/* keep video below the close button */
+#videoContainer,
+#videoContainer video{
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   ABOUT ME - FORCE SAME WIDTH AS GRID
+========================= */
+.about{
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 24px 18px 100px;
+}
+
+.about h2{
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.about p{
+  /* 🔧 TEXT LENGTH CONTROL */
+  max-width: 1300px;   /* ← CHANGE THIS (500–700px sweet spot) */
+
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+
+  font-size: 20px;
+}
+
+
+/* =========================
+   GRAPHIC DESIGN (STACKED)
+========================= */
+/* make gd-item a positioning context */
+/* ===== Personal Graphic Design (clean spacing) ===== */
+/* ===== Personal Graphic Design ===== */
+.gd{
+  max-width: 1150px;
+  padding: 0px 18px 40px;    /* same side padding style */
+}
+
+.gd{
+  margin-top: 60px !important;
+}
+
+
+.gd-title{
+  margin: 0 0 18px;
+  font-size: 26px;
+  font-weight: 600;        /* not super bold */
+  color: var(--text);
+}
+
+.gd-stack{
+  display: flex;
+  flex-direction: column;
+  gap: 26px;               /* spacing between images */
+}
+
+.gd-item{
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+
+  /* prevents weird “extra spacing” */
+  line-height: 0;
+}
+
+.gd-item img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ✅ Hover text (NO black fade) */
+.gd-hint{
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+
+  pointer-events: none;
+  text-shadow: 0 2px 10px rgba(0,0,0,.75); /* readable without black overlay */
+}
+
+.gd-item:hover .gd-hint{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+.email-line a{
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.email-line a:hover{
+  text-decoration: underline;
+}
+
+
+
+/* shared section width (matches Profile & others) */
+.social-section{
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 24px 18px 40px;
+}
+
+/* unified section title style */
+.section-title{
+  max-width: 1150px;
+  margin: 0 auto;
+  margin: 0 0 14px;
+  font-size: 28px;        /* SAME as Profile */
+}
+
+/* social links alignment */
+.social-section .social{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+ 
+/* =========================
+   YOUTUBE SOCIAL SECTION
+========================= */
+/* =========================
+   YOUTUBE / SOCIALS SECTION
+   (single clean block)
+========================= */
+
+.yt{
+  max-width: 1150px;
+  margin-top: 60px !important;
+  padding: 20px 18px 40px;
+}
+
+.yt-title{
+  margin: 0 0 14px;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* -------------------------
+   Banner (clickable)
+------------------------- */
+/* =========================
+   YOUTUBE / SOCIALS (CLEAN)
+========================= */
+
+.yt{
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 20px 18px 40px;
+}
+
+.yt-title{
+  margin: 0 0 14px;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* -------------------------
+   BANNER (IMAGE + BLUR)
+------------------------- */
+.yt-banner{
+  position: relative;
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  min-height: 170px;
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,.08);
+  background: #111;          /* fallback if image fails */
+  box-shadow: none;
+  outline: none;
+}
+
+/* blurred background image */
+.yt-banner::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("image/channels4_banner.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  filter: blur(2px);
+  z-index: 0;
+}
+
+/* dark overlay for readability */
+.yt-banner::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.103);
+  z-index: 1;
+}
+
+/* content layer */
+.yt-banner-inner{
+  position: relative;
+  z-index: 2;
+
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  padding: 22px 26px;
+}
+
+/* LEFT group */
+.yt-left{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.yt-avatar{
+  width: 76px;
+  height: 76px;
+  border-radius: 999px;
+  object-fit: cover;
+
+  border: 3px solid rgba(255,255,255,.18);
+  box-shadow: none; /* remove avatar shadow */
+}
+
+.yt-info{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.yt-name{
+  font-size: 54px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-transform: lowercase;
+}
+
+.yt-meta{
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,.88);
+}
+
+.yt-subs{
+  color: rgba(255,255,255,.95);
+}
+
+/* RIGHT badge */
+.yt-platform{
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+
+  color: #fff;
+  background: #ff0000;   /* YouTube red */
+  border: none;
+  box-shadow: none;      /* no drop shadow */
+}
+
+/* -------------------------
+   VIDEO ROW + ARROWS
+------------------------- */
+.yt-row{
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* one-line scroll */
+.yt-scroll{
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  padding: 2px 0;
+  min-width: 0;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.yt-scroll::-webkit-scrollbar{
+  display: none;
+}
+
+/* 16:9 thumbnails */
+.yt-card{
+  position: relative;
+  flex: 0 0 auto;
+
+  width: 360px;
+  aspect-ratio: 16 / 9;
+
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(255,255,255,.10);
+  text-decoration: none;
+}
+
+.yt-thumb{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.yt-play{
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.yt-nav{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+
+.yt-nav:hover{
+  background: rgba(0,0,0,.55);
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .yt-card{ width: 300px; }
+  .yt-name{ font-size: 42px; }
+}
+
+@media (max-width: 600px){
+  .yt-banner-inner{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .yt-left{
+    flex-direction: column;
+  }
+  .yt-info{ align-items: center; }
+}
+
+/* =========================
+   REMOVE PROFILE OUTLINE / RING
+========================= */
+.yt-avatar{
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  filter: none !important;
+}
+
+
+/* =========================
+   TIKTOK VARIANT (REUSES YT)
+========================= */
+
+.yt--tiktok .yt-banner-bg--tiktok{
+  background-image: url("image/tiktok/banner.jpg");
+  filter: blur(6px);
+}
+
+/* TikTok badge */
+.yt-platform--tiktok{
+  background: #000;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+/* TikTok thumbnails = vertical */
+.yt-card--tiktok{
+  width: 220px;
+  aspect-ratio: 9 / 16;
+}
+
+/* =========================
+   TIKTOK BANNER – WHITE VERSION
+========================= */
+
+/* force white background */
+.yt--tiktok .yt-banner{
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+
+/* remove blur + overlays */
+.yt--tiktok .yt-banner::before,
+.yt--tiktok .yt-banner::after,
+.yt--tiktok .yt-banner-bg,
+.yt--tiktok .yt-banner-overlay{
+  display: none !important;
+}
+
+/* text → black */
+.yt--tiktok .yt-name{
+  color: #000000 !important;
+}
+
+.yt--tiktok .yt-meta,
+.yt--tiktok .yt-subs{
+  color: #333333 !important;
+}
+
+/* avatar clean (no glow / no outline) */
+.yt--tiktok .yt-avatar{
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,.12);
+}
+
+/* TikTok badge (clean, flat) */
+.yt--tiktok .yt-platform{
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+
+/* =========================
+   TIKTOK: WHITE BANNER + BLACK TEXT
+========================= */
+.yt.yt--tiktok .yt-banner{
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: none !important;
+}
+
+.yt.yt--tiktok .yt-banner::before,
+.yt.yt--tiktok .yt-banner::after{
+  display: none !important;
+}
+
+.yt.yt--tiktok .yt-name{ color: #000 !important; }
+.yt.yt--tiktok .yt-meta,
+.yt.yt--tiktok .yt-subs{ color: #333 !important; }
+
+.yt.yt--tiktok .yt-avatar{
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,.12) !important;
+}
+
+/* TikTok badge */
+.yt.yt--tiktok .yt-platform{
+  background: #000 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* TikTok cards are vertical (9:16) */
+.yt-card--tiktok{
+  width: 210px !important;
+  aspect-ratio: 9 / 15 !important;
+}
+
+
+/* =========================
+   CENTER TIKTOK VIDEOS
+========================= */
+
+/* center items when total width is smaller than container */
+.yt--tiktok .yt-scroll{
+  justify-content: center;
+}
+
+/* keep scrolling behavior intact */
+.yt--tiktok .yt-scroll{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* =========================
+   UNIFY SECTION TITLES + SPACING
+   (match "Personal Projects")
+========================= */
+
+/* same title look as .hero h1 */
+.gd-title,
+.yt-title,
+.about h1{
+  margin: 0 0 50px;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  font-weight: 700; /* ✅ NOT bold */
+  color: var(--text);
+}
+
+/* make these sections follow the same spacing rhythm as Projects */
+.gd,
+.yt,
+.about{
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 16px 18px 40px; /* same “feel” as container/hero spacing */
+}
+
+/* remove extra top gap you added to GD */
+.gd{
+  margin-top: 0; /* overrides: margin: 60px auto 0; */
+}
+
+
+/* =========================
+   SECTION DASH SEPARATOR
+========================= */
+.section-sep{
+  max-width: 1150px;
+  margin: 40px auto 30px;
+  padding: 0 18px;
+
+  text-align: center;
+  user-select: none;
+  opacity: .9;
+}
+
+/* dash line */
+.section-sep::before{
+  content: "-------------------------------------------------------------------------------------------------------------------";
+  color: var(--sep-color, rgba(255,255,255,.35));
+  font-size: 18px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* =========================
+   MOBILE FIX
+========================= */
+@media (max-width: 600px){
+  .section-sep{
+    margin: 26px auto 22px;
+  }
+
+  .section-sep::before{
+    content: "---------------------------------------------------";
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+}
+
+
