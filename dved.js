@@ -181,20 +181,23 @@
 
 
 (() => {
-  const scroller = document.getElementById("ttScroll");
-  if (!scroller) return;
+  document.querySelectorAll(".uop-video").forEach((card) => {
+    card.addEventListener("click", () => {
+      const src = card.getAttribute("data-video");
+      if (!src) return;
 
-  // Use the SAME arrow buttons but scoped to this section
-  const section = scroller.closest(".yt");
-  const prev = section.querySelector(".yt-prev");
-  const next = section.querySelector(".yt-next");
-  if (!prev || !next) return;
+      // prevent re-loading if already playing
+      if (card.querySelector("video")) return;
 
-  const step = () => {
-    const first = scroller.querySelector(".yt-card");
-    return first ? first.getBoundingClientRect().width + 16 : 260;
-  };
+      card.innerHTML = `
+        <video controls autoplay loop playsinline preload="metadata">
+          <source src="${src}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      `;
 
-  prev.addEventListener("click", () => scroller.scrollBy({ left: -step(), behavior: "smooth" }));
-  next.addEventListener("click", () => scroller.scrollBy({ left:  step(), behavior: "smooth" }));
+      const v = card.querySelector("video");
+      if (v) v.play().catch(() => {});
+    });
+  });
 })();
